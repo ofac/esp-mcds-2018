@@ -9,7 +9,7 @@
 	<style>
 		body {
 			font-family: 'Muli', sans-serif;
-			font-weight: 300;
+			font-weight: 200;
 		}
 	</style>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -20,7 +20,7 @@
 			<div class="col-md-8 offset-md-2">
 				<h1 class="text-center"> <i class="fa fa-users"></i> CRUD MVC</h1>
 				<hr>
-				<a href="" class="btn btn-success"><i class="fa fa-plus"> Add User </i></a>
+				<a href="?page=add" class="btn btn-success"><i class="fa fa-plus"> Add User </i></a>
 				<br><br>
 				<table class="table table-striped table-hover table-dark">
 					<thead>

@@ -21,6 +21,26 @@ class Model extends DataBase {
 
 	}
 
+	public function addUser($firstName, $lastName, $email, $phoneNumber, $address) {
+		try {
+			$sql = "INSERT INTO users (id, firstName, lastName, email, phoneNumber, address) 
+			        VALUES (DEFAULT, :firstName, :lastName, :email, :phoneNumber, :address)";
+			$stm = $this->conx->prepare($sql);
+			$stm->bindparam(":firstName", $firstName);
+			$stm->bindparam(":lastName", $lastName);
+			$stm->bindparam(":email", $email);
+			$stm->bindparam(":phoneNumber", $phoneNumber);
+			$stm->bindparam(":address", $address);
+			if($stm->execute()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+		} 
+	}
+
 	public function getInfo() {
 		return array(
 			'firstName'   => 'Jeremias',
