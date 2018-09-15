@@ -41,6 +41,21 @@ class Model extends DataBase {
 		} 
 	}
 
+	public function getUser($id)
+	{
+		try {
+			$sql = "SELECT * FROM users WHERE id = :id";
+			$stm = $this->conx->prepare($sql);
+			$stm->bindparam(":id", $id);
+			$stm->execute();
+			return $stm->fetchAll();
+
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+
+	}
+
 	public function getInfo() {
 		return array(
 			'firstName'   => 'Jeremias',
