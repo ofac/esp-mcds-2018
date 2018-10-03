@@ -15,6 +15,12 @@ class Controller {
 			if($_GET['page'] == 'show') {
 				$this->show($_GET['id']);
 			}
+			if($_GET['page'] == 'edit') {
+				$this->edit($_GET['id']);
+			}
+			if($_GET['page'] == 'delete') {
+				$this->delete($_GET['id']);
+			}
 		} else {
 			$this->home();
 		}
@@ -28,7 +34,6 @@ class Controller {
 	}
 
 	public function add() {
-
 		if($_POST) {
 			$firstName   = $_POST['firstName'];
 			$lastName    = $_POST['lastName'];
@@ -44,7 +49,6 @@ class Controller {
           		$_SESSION['message'] = "User wasnt added successfully!";
           		header('Location: ./');
 			}
-			
 		}
 
 		$this->load->view('users/add.php');
@@ -53,6 +57,42 @@ class Controller {
 	public function show($id) {
 		$data = $this->model->getUser($id);
 		$this->load->view('users/show.php', $data);
+	}
+
+	public function edit($id) {
+
+		if($_POST) {
+			$id          = $_POST['id'];
+			$firstName   = $_POST['firstName'];
+			$lastName    = $_POST['lastName'];
+			$email       = $_POST['email'];
+			$phoneNumber = $_POST['phoneNumber'];
+			$address     = $_POST['address'];
+			if ($this->model->editUser($id, $firstName, $lastName, $email, $phoneNumber, $address)) {
+				$_SESSION['status']  = "success";
+          		$_SESSION['message'] = "User was edited successfully!";
+          		header('Location: ./');
+			} else {
+				$_SESSION['status']  = "error";
+          		$_SESSION['message'] = "User wasnt edited successfully!";
+          		header('Location: ./');
+			}
+		}
+
+		$data = $this->model->getUser($id);
+		$this->load->view('users/edit.php', $data);
+	}
+
+	public function delete($id) {
+		if ($this->model->deleteUser($id)) {
+				$_SESSION['status']  = "success";
+          		$_SESSION['message'] = "User was deleted successfully!";
+          		header('Location: ./');
+			} else {
+				$_SESSION['status']  = "error";
+          		$_SESSION['message'] = "User wasnt deleted successfully!";
+          		header('Location: ./');
+			}
 	}
 
 }
