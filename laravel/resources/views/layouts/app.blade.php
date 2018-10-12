@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -42,11 +44,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="btn btn-outline-top-instalara" href="{{ route('login') }}"> INGRESAR </a>
                             </li>
                             <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="btn btn-outline-top-instalara" href="{{ route('register') }}"> REGISTRO</a>
                                 @endif
                             </li>
                         @else
@@ -76,6 +78,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="text-center mt-5">
+            &copy; Todos los derechos reservados {{ date('Y') }}
+        </footer>
     </div>
 </body>
 </html>
