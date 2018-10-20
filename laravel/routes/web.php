@@ -26,5 +26,7 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('add', 'PhotoController@create')->name('add');
 Route::post('save', 'PhotoController@save')->name('save');
 
+Route::get('profile/{nickname}', 'HomeController@profile')->name('profile');
+
 
 

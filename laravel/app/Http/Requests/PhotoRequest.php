@@ -28,4 +28,11 @@ class PhotoRequest extends FormRequest
             'description' => 'required',
         ];
     }
+    public function messages()
+    {
+        return [
+            'photo.required'       => 'El campo Foto es requerido.',
+            'description.required' => 'El campo Descripción es requerido.',
+        ];
+    }
 }

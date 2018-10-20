@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
@@ -88,5 +85,13 @@
             &copy; Todos los derechos reservados {{ date('Y') }}
         </footer>
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-upload').click(function(event) {
+                $(this).prev().click();
+            });
+        });
+    </script>
 </body>
 </html>

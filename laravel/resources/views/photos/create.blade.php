@@ -21,7 +21,9 @@
         	<form action="{{ url('save') }}" method="post" enctype="multipart/form-data">
         		@csrf
         		<div class="form-group">
-        			<input type="file" class="form-control" name="photo" accept="image/*">
+        			<input type="file" class="form-control d-none" name="photo" accept="image/*">
+                    <button type="button" class="btn btn-block btn-instalara btn-upload"> <i class="fa fa-image"></i> Seleccionar Foto</button>
+                    <small class="form-text text-muted">La foto debe tener el mismo alto y ancho</small>
         		</div>
         		<div class="form-group">
         			<textarea name="description" cols="30" rows="3" class="form-control" placeholder="Descripción"></textarea>
