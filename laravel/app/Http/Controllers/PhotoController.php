@@ -29,7 +29,7 @@ class PhotoController extends Controller
     	$photo->description = $request->get('description');
 
     	if ($photo->save()) {
-    		return redirect('home')->with("success", 'La foto se adiciono con exito!');
+    		return redirect('home')->with('status', 'La Foto se adiciono con exito!');
     	}
 
     }

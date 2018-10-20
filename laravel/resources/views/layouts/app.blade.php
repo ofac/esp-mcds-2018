@@ -10,10 +10,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="{{ asset('fonts/fonts.css') }}" rel="stylesheet" type="text/css">
 
     {{-- FontAwesome --}}
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" crossorigin="anonymous">
+    <link href="{{ asset('css/fontawesome.all.min.css') }}" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -86,11 +86,19 @@
         </footer>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
+
     <script>
         $(document).ready(function() {
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             $('.btn-upload').click(function(event) {
                 $(this).prev().click();
             });
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            @if(session('status'))
+                swal('Felicitaciones!', '{{ session('status') }}','success');
+            @endif
+
         });
     </script>
 </body>
