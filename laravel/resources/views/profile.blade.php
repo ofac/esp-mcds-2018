@@ -15,12 +15,9 @@
                     <br>
                     {{ $user->email }}
                 </div>
-
             </div>
-            
-            
-
-            <br><br>
+            <hr>
+            <br>
             <div class="row justify-content-center">
             @forelse($photos as $photo)
                 <div class="col-md-4">
@@ -29,7 +26,7 @@
                     <p class="card-text">
                         <a href="#" class="btn btn-sm btn-instalara"> <i class="fa fa-heart"></i> </a>
                         <a href="#" class="btn btn-sm btn-instalara"> <i class="fa fa-comment"></i> </a>
-                        {{ $photo->description }}
+                        <p>{{ $photo->description }}</p>
                     </p>
                     
                   </div>
