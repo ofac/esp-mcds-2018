@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\PhotoRequest;
 use App\Photo;
+use App\Comment;
 use Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -41,6 +42,19 @@ class PhotoController extends Controller
 
     public function show($id) {
         $photo = Photo::find($id);
-        return view('photos.show')->with('photo', $photo);
+        $comments = Comment::where('photo_id', '=', $id)->get();
+        return view('photos.show')->with('photo', $photo)->with('comments', $comments);
     }
+
+    public function addComment(Request $request) {
+        $cm = new Comment;
+        $cm->message  = $request->get('message');
+        $cm->user_id  = $request->get('user_id');
+        $cm->photo_id = $request->get('photo_id');
+
+        if ($cm->save()) {
+            return redirect('photo/'.$cm->photo_id)->with('status', 'El Comentario se adiciono con exito!');
+        }
+    } 
+
 }
