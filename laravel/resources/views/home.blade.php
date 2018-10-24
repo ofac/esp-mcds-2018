@@ -18,6 +18,12 @@
                         <a href="#" class="btn btn-sm btn-instalara"> <i class="fa fa-heart"></i> </a>
                         <a href="#" class="btn btn-sm btn-instalara"> <i class="fa fa-comment"></i> </a>
                         <p>{{ $photo->description }}</p>
+                        <?php 
+                            \Carbon\Carbon::setLocale(config('app.locale'));
+                            $hoy = \Carbon\Carbon::now();
+                            $fc = \Carbon\Carbon::parse($photo->created_at);
+                        ?>
+                        <small class="text-muted"> {{ $fc->diffForHumans($hoy) }} </small>
                     </p>
                     
                   </div>

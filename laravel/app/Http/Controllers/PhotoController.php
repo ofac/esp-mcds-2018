@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create() {
     	return view('photos.create');
     }
@@ -32,5 +37,10 @@ class PhotoController extends Controller
     		return redirect('home')->with('status', 'La Foto se adiciono con exito!');
     	}
 
+    }
+
+    public function show($id) {
+        $photo = Photo::find($id);
+        return view('photos.show')->with('photo', $photo);
     }
 }
