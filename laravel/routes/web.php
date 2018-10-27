@@ -32,6 +32,8 @@ Route::get('profile/{nickname}', 'HomeController@profile')->name('profile');
 Route::get('photo/{id}', 'PhotoController@show');
 Route::post('comment/add', 'PhotoController@addComment');
 
+Route::post('like/add', 'PhotoController@addLike');
+
 
 
 

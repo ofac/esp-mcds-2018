@@ -19,6 +19,7 @@ class CreateLikesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('photo_id');
             $table->foreign('photo_id')->references('id')->on('photos');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

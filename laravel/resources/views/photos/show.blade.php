@@ -9,6 +9,18 @@
           </ol>
            <img class="card-img-top" src="{{ asset($photo->url) }}" alt="{{ $photo->description }}">
            <div class="card-body bg-white">
+                @if (count($mylike) > 0)
+                    <button type="submit" class="btn btn-lg btn-like1"> <i class="fa fa-heart"></i> </button>
+                @else
+                    <form action="{{ url('like/add') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="photo_id" value="{{ $photo->id }}">
+                        <button type="submit" class="btn btn-lg btn-like0"> <i class="fa fa-heart"></i> </button>
+                    </form>
+                @endif
+                
+                    
                 <p class="lead"> {{ $photo->description }} </p>
                 <?php 
                     \Carbon\Carbon::setLocale(config('app.locale'));

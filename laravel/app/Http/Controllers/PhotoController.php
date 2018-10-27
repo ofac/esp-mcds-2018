@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PhotoRequest;
 use App\Photo;
 use App\Comment;
+use App\Like;
 use Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -43,7 +44,8 @@ class PhotoController extends Controller
     public function show($id) {
         $photo = Photo::find($id);
         $comments = Comment::where('photo_id', '=', $id)->get();
-        return view('photos.show')->with('photo', $photo)->with('comments', $comments);
+        $mylike = Like::where('user_id', '=', Auth::user()->id)->where('photo_id', '=', $id)->get();
+        return view('photos.show')->with('photo', $photo)->with('comments', $comments)->with('mylike', $mylike);
     }
 
     public function addComment(Request $request) {
@@ -56,5 +58,15 @@ class PhotoController extends Controller
             return redirect('photo/'.$cm->photo_id)->with('status', 'El Comentario se adiciono con exito!');
         }
     } 
+
+    public function addLike(Request $request) {
+        $lk = new Like;
+        $lk->user_id = $request->get('user_id');
+        $lk->photo_id = $request->get('photo_id');
+
+        if ($lk->save()) {
+            return redirect('photo/'.$lk->photo_id)->with('status', 'Me gusta!');
+        }
+    }
 
 }

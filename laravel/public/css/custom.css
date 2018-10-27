@@ -25,3 +25,15 @@
 .btn-link-instalara:hover {
 	color: #049999;
 }
+
+button.btn-like0 {
+	background-color: #ddd;
+	border-radius: 25px;
+	color: #fff;
+}
+
+button.btn-like1  {
+	background-color: #00c2cb;
+	border-radius: 25px;
+	color: #fff;
+}
