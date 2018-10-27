@@ -32,7 +32,9 @@
                   <div class="card-body bg-white">
                     <p class="card-text">
                         <a href="#" class="btn btn-sm btn-instalara"> <i class="fa fa-heart"></i> </a>
-                        <a href="#" class="btn btn-sm btn-instalara"> <i class="fa fa-comment"></i> </a>
+                        @if(count($photo->comments) > 0)
+                        <a href="#" class="btn btn-sm btn-instalara"> {{ count($photo->comments) }} <i class="fa fa-comment"></i> </a>  
+                        @endif
                         <p>{{ $photo->description }}</p>
                         <?php 
                             \Carbon\Carbon::setLocale(config('app.locale'));
