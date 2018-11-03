@@ -26,8 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $photos = Photo::where('user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->get();
-        return view('home')->with('photos', $photos);
+
+        if (Auth::user()->role == "admin") {
+            $users = User::all();
+            return view('admin')->with('users', $users);;
+        } else if (Auth::user()->role == "user") {
+            $photos = Photo::where('user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->get();
+            return view('home')->with('photos', $photos);
+        } else {
+            return abort(404);
+        }
+        
     }
 
     public function profile($nickname) {
